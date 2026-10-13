@@ -26,9 +26,12 @@ class WelcomeScreen extends StatelessWidget {
             15.verticalSpace,
             Text('Order Your Book Now!', style: AppTextStyle.hintText),
             Spacer(),
-            AppBotton(title: 'Login',onTap: () {
-              Navigator.pushNamed(context, AppRoutes.loginscreen)
-            },),
+            AppBotton(
+              title: 'Login',
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.loginscreen);
+              },
+            ),
             20.verticalSpace,
             AppBotton(
               title: 'Register',
