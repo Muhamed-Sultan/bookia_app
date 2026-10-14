@@ -1,7 +1,9 @@
 class AppRoutes {
-  static const String homescreen = 'home';
-  static const String loginscreen = 'login';
-  static const String registerscreen = 'register';
-  static const String welcomescreen = 'welcome';
-
+  static const String HomeScreen = 'home';
+  static const String LoginScreen = 'login';
+  static const String RegisterScreen = 'register';
+  static const String WelcomeScreen = 'welcome';
+  static const String ForgetPasswordScreen = 'forget Password';
+  static const String OTPVerificationScreen = 'OTP Verification';
+  static const String CreatNewPasswordScreen = 'Creat New Password';
 }

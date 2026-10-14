@@ -24,12 +24,12 @@ class WelcomeScreen extends StatelessWidget {
             135.verticalSpace,
             Image.asset("assets/images/splash.png"),
             15.verticalSpace,
-            Text('Order Your Book Now!', style: AppTextStyle.hintText),
+            Text('Order Your Book Now!', style: AppTextStyle.labelText),
             Spacer(),
             AppBotton(
               title: 'Login',
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.loginscreen);
+                Navigator.pushNamed(context, AppRoutes.LoginScreen);
               },
             ),
             20.verticalSpace,
@@ -37,6 +37,9 @@ class WelcomeScreen extends StatelessWidget {
               title: 'Register',
               bgColor: Colors.white,
               textColor: Colors.black,
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.RegisterScreen);
+              },
             ),
             92.verticalSpace,
           ],

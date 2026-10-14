@@ -23,7 +23,7 @@ class BookieApp extends StatelessWidget {
           fontFamily: 'DM',
           scaffoldBackgroundColor: AppColors.backgroundColor,
         ),
-        initialRoute: AppRoutes.welcomescreen,
+        initialRoute: AppRoutes.WelcomeScreen,
         onGenerateRoute: AppRouter.onGenerateRoute,
       ),
     );

@@ -13,4 +13,9 @@ class AppTextStyle {
     fontWeight: FontWeight.w300,
     color: AppColors.grayColor,
   );
+  static const TextStyle labelText = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blackColor,
+  );
 }
