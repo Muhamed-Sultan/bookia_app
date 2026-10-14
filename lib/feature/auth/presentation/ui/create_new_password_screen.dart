@@ -1,9 +1,7 @@
-import 'package:bookie_app/core/routes/app_routes.dart';
-import 'package:bookie_app/core/theme/app_colors.dart';
-import 'package:bookie_app/core/theme/app_text_style.dart';
-import 'package:bookie_app/core/widgets/app_botton.dart';
-import 'package:bookie_app/core/widgets/custom_text_form_feild.dart';
-import 'package:bookie_app/core/widgets/icon_back.dart';
+import 'package:bookia_app/core/theme/app_text_style.dart';
+import 'package:bookia_app/core/widgets/app_botton.dart';
+import 'package:bookia_app/core/widgets/custom_text_form_feild.dart';
+import 'package:bookia_app/core/widgets/icon_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

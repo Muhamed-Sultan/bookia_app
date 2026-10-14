@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookie_app/feature/auth/data/repo/auth_repo.dart';
+import 'package:bookia_app/feature/auth/data/repo/auth_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';

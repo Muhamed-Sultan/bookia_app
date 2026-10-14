@@ -1,6 +1,6 @@
-import 'package:bookie_app/core/theme/app_text_style.dart';
-import 'package:bookie_app/core/widgets/icon_back.dart';
-import 'package:bookie_app/feature/auth/presentation/ui/widgets/register_form.dart';
+import 'package:bookia_app/core/theme/app_text_style.dart';
+import 'package:bookia_app/core/widgets/icon_back.dart';
+import 'package:bookia_app/feature/auth/presentation/ui/widgets/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
