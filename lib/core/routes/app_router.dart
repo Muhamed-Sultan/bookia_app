@@ -1,7 +1,9 @@
+import 'package:bookie_app/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookie_app/feature/auth/presentation/ui/create_new_password_screen.dart';
 import 'package:bookie_app/feature/auth/presentation/ui/forget_password_screen.dart';
 import 'package:bookie_app/feature/auth/presentation/ui/register_screen.dart';
 import 'package:bookie_app/feature/welcome/presentation/ui/welcome_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/auth/presentation/ui/login_screen.dart';
 import '../../feature/home/presentation/ui/home_screen.dart';
 import 'app_routes.dart';
@@ -15,9 +17,19 @@ class AppRouter {
       case AppRoutes.WelcomeScreen:
         return MaterialPageRoute(builder: (_) => const WelcomeScreen());
       case AppRoutes.LoginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => AuthCubit(),
+            child: const LoginScreen(),
+          ),
+        );
       case AppRoutes.RegisterScreen:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => AuthCubit(),
+            child: const RegisterScreen(),
+          ),
+        );
       case AppRoutes.ForgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case AppRoutes.CreateNewPasswordScreen:

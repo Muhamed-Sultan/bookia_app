@@ -34,11 +34,16 @@ class _LoginFormState extends State<LoginForm> {
         if (state is LoginLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(child: CircularProgressIndicator()),
+            barrierDismissible: false,
+            builder: (BuildContext context) => AlertDialog(
+              backgroundColor: Colors.transparent,
+              content: CircularProgressIndicator(),
+            ),
           );
         } else if (state is LoginSuccessState) {
           Navigator.pushNamed(context, AppRoutes.HomeScreen);
         } else {
+          Navigator.pop(context);
           showDialog(
             context: context,
             builder: (context) => Center(child: Text('Login failed')),
@@ -52,12 +57,13 @@ class _LoginFormState extends State<LoginForm> {
             CustomTextFormField(
               controller: emailController,
               validator: (v) {
-                if (v == null) {
+                if (v == null || v.trim().isEmpty) {
                   return 'Email is required';
                 }
-                if (!Validation.isEmailValid(v ?? "")) {
+                if (!Validation.isEmailValid(v)) {
                   return 'Please enter a valid email';
                 }
+                return null;
               },
               hintText: 'Enter your Email',
             ),
@@ -89,7 +95,6 @@ class _LoginFormState extends State<LoginForm> {
             AppBotton(
               title: 'Login',
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.RegisterScreen);
                 if (formKey.currentState?.validate() ?? false) {
                   context.read<AuthCubit>().login(
                     email: emailController.text,

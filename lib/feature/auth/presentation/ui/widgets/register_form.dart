@@ -70,7 +70,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 if (v == null) {
                   return 'Email is required';
                 }
-                if (!Validation.isEmailValid(v ?? "")) {
+                if (!Validation.isEmailValid(v)) {
                   return 'Please enter a valid email';
                 }
               },
@@ -81,10 +81,10 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               controller: passwordController,
               validator: (v) {
-                if (v == null) {
-                  return 'Password is required';
+                if (v == null || v.trim().isEmpty) {
+                  return 'Email is required';
                 }
-                if (!Validation.isPasswordValid(v ?? "")) {
+                if (!Validation.isPasswordValid(v)) {
                   return 'Please enter a valid password';
                 }
               },
@@ -95,12 +95,13 @@ class _RegisterFormState extends State<RegisterForm> {
               isPassword: true,
               controller: conformPasswordController,
               validator: (v) {
-                if (v == null) {
-                  return 'Conform Password is required';
+                if (v == null || v.isEmpty) {
+                  return 'Confirm Password is required';
                 }
-                if (!Validation.isPasswordValid(v ?? "")) {
-                  return 'Please enter a valid Conform password';
+                if (v != passwordController.text) {
+                  return 'Passwords do not match';
                 }
+                return null;
               },
               hintText: 'Conform Password',
             ),
@@ -108,7 +109,6 @@ class _RegisterFormState extends State<RegisterForm> {
             AppBotton(
               title: 'Register',
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.RegisterScreen);
                 if (formKey.currentState?.validate() ?? false) {
                   context.read<AuthCubit>().register(
                     name: userNameController.text,
