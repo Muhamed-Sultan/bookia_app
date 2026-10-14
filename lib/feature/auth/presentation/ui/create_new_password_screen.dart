@@ -7,8 +7,8 @@ import 'package:bookie_app/core/widgets/icon_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CreatNewPasswordScreen extends StatelessWidget {
-  const CreatNewPasswordScreen({super.key});
+class CreateNewPasswordScreen extends StatelessWidget {
+  const CreateNewPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

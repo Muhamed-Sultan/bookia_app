@@ -35,7 +35,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    AppRoutes.CreatNewPasswordScreen,
+                    AppRoutes.CreateNewPasswordScreen,
                   );
                 },
               ),

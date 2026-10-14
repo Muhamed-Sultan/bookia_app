@@ -1,4 +1,4 @@
-import 'package:bookie_app/feature/auth/presentation/ui/creat_new_password_screen.dart';
+import 'package:bookie_app/feature/auth/presentation/ui/create_new_password_screen.dart';
 import 'package:bookie_app/feature/auth/presentation/ui/forget_password_screen.dart';
 import 'package:bookie_app/feature/auth/presentation/ui/register_screen.dart';
 import 'package:bookie_app/feature/welcome/presentation/ui/welcome_screen.dart';
@@ -20,9 +20,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case AppRoutes.ForgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-      case AppRoutes.CreatNewPasswordScreen:
+      case AppRoutes.CreateNewPasswordScreen:
         return MaterialPageRoute(
-          builder: (_) => const CreatNewPasswordScreen(),
+          builder: (_) => const CreateNewPasswordScreen(),
         );
 
       default:
