@@ -3,6 +3,7 @@ import 'package:bookia_app/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;

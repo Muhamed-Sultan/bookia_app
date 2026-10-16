@@ -7,9 +7,12 @@ class Validation {
   }
 
   static bool isPasswordValid(String password) {
-    final RegExp passwordRegex = RegExp(
-      r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
-    );
+    final RegExp passwordRegex = RegExp(r'^\d{8,}$');
     return passwordRegex.hasMatch(password);
   }
 }
+
+
+
+
+// r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'

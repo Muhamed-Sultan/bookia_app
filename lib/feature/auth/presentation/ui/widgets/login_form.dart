@@ -37,7 +37,7 @@ class _LoginFormState extends State<LoginForm> {
             barrierDismissible: false,
             builder: (BuildContext context) => AlertDialog(
               backgroundColor: Colors.transparent,
-              content: CircularProgressIndicator(),
+              content: Center(child: CircularProgressIndicator()),
             ),
           );
         } else if (state is LoginSuccessState) {
@@ -46,7 +46,15 @@ class _LoginFormState extends State<LoginForm> {
           Navigator.pop(context);
           showDialog(
             context: context,
-            builder: (context) => Center(child: Text('Login failed')),
+            builder: (context) => AlertDialog(
+              title: Text('Login failed'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('OK'),
+                ),
+              ],
+            ),
           );
         }
       },
@@ -75,9 +83,10 @@ class _LoginFormState extends State<LoginForm> {
                 if (v == null) {
                   return 'Password is required';
                 }
-                if (!Validation.isPasswordValid(v ?? "")) {
+                if (!Validation.isPasswordValid(v)) {
                   return 'Please enter a valid password';
                 }
+                return null;
               },
               hintText: 'Enter your Password',
             ),

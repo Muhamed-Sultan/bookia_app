@@ -39,14 +39,27 @@ class _RegisterFormState extends State<RegisterForm> {
         if (state is RegisterLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(child: CircularProgressIndicator()),
+            barrierDismissible: false,
+            builder: (BuildContext context) => AlertDialog(
+              backgroundColor: Colors.transparent,
+              content: Center(child: CircularProgressIndicator()),
+            ),
           );
-        } else if (state is LoginSuccessState) {
-          Navigator.pushNamed(context, AppRoutes.HomeScreen);
+        } else if (state is RegisterSuccessState) {
+          Navigator.pushNamed(context, AppRoutes.LoginScreen);
         } else {
+          Navigator.pop(context);
           showDialog(
             context: context,
-            builder: (context) => Center(child: Text('Login failed')),
+            builder: (context) => AlertDialog(
+              title: Text('Login failed'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('OK'),
+                ),
+              ],
+            ),
           );
         }
       },
@@ -60,6 +73,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 if (v == null) {
                   return 'User name is required';
                 }
+                return null;
               },
               hintText: 'Username',
             ),
@@ -73,6 +87,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 if (!Validation.isEmailValid(v)) {
                   return 'Please enter a valid email';
                 }
+                return null;
               },
               hintText: 'Email',
             ),
@@ -82,11 +97,12 @@ class _RegisterFormState extends State<RegisterForm> {
               controller: passwordController,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) {
-                  return 'Email is required';
+                  return 'Password is required';
                 }
                 if (!Validation.isPasswordValid(v)) {
                   return 'Please enter a valid password';
                 }
+                return null;
               },
               hintText: 'Password',
             ),

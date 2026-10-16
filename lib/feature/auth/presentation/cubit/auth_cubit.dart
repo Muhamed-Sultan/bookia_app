@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:bookia_app/feature/auth/data/repo/auth_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
@@ -7,7 +7,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
-  login({required String email, required String password}) async {
+  Future<void> login({required String email, required String password}) async {
     emit(LoginLoadingState());
     final response = await AuthRepo.login(email: email, password: password);
 
@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  register({
+  Future<void> register({
     required String email,
     required String password,
     required String name,
@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
     if (response) {
       emit(RegisterSuccessState());
     } else {
-      emit(LoginErrorState());
+      emit(RegisterErrorState());
     }
   }
 }
