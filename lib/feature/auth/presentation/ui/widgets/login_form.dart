@@ -41,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
           );
         } else if (state is LoginSuccessState) {
-          Navigator.pushNamed(context, AppRoutes.HomeScreen);
+          Navigator.pushNamed(context, AppRoutes.AppBottonNavBar);
         } else {
           Navigator.pop(context);
           showDialog(

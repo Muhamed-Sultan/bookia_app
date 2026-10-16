@@ -1,3 +1,4 @@
+import 'package:bookia_app/core/widgets/app_botton_nav_bar.dart';
 import 'package:bookia_app/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/create_new_password_screen.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/forget_password_screen.dart';
@@ -35,6 +36,10 @@ class AppRouter {
       case AppRoutes.CreateNewPasswordScreen:
         return MaterialPageRoute(
           builder: (_) => const CreateNewPasswordScreen(),
+        );
+      case AppRoutes.AppBottonNavBar:
+        return MaterialPageRoute(
+          builder: (_) => const AppBottomNavBar(),
         );
 
       default:
