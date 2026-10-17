@@ -10,6 +10,7 @@ final class GetBestsellerBooksLoading extends HomeState {}
 final class GetBestsellerBooksError extends HomeState {}
 
 final class GetBestsellerBooksSuccess extends HomeState {
-  final List<Products>? product;
-  GetBestsellerBooksSuccess(List<Products>? products, {this.product});
+  final List<Products> product;
+
+  GetBestsellerBooksSuccess(this.product);
 }

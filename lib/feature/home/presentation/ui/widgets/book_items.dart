@@ -25,8 +25,8 @@ class BookItems extends StatelessWidget {
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.r),
               topRight: Radius.circular(10.r),
-              // bottomLeft: Radius.circular(10.r),
-              // bottomRight: Radius.circular(10.r),
+              bottomLeft: Radius.circular(10.r),
+              bottomRight: Radius.circular(10.r),
             ),
             child: Image.network(
               product?.image ?? "",
@@ -38,7 +38,7 @@ class BookItems extends StatelessWidget {
           20.verticalSpace,
           Text(
             product?.name ?? "",
-            maxLines: 2,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           8.verticalSpace,
