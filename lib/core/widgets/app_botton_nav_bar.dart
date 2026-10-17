@@ -1,10 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:bookia_app/core/theme/app_colors.dart';
 import 'package:bookia_app/feature/cart/presentation/ui/cart_screen.dart';
+import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/home/presentation/ui/home_screen.dart';
 import 'package:bookia_app/feature/profile/presentation/ui/profile_screen.dart';
 import 'package:bookia_app/feature/wish_list/presentation/ui/wish_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBottomNavBar extends StatefulWidget {
@@ -17,11 +19,14 @@ class AppBottomNavBar extends StatefulWidget {
 class _AppBottomNavBarState extends State<AppBottomNavBar> {
   int currentIndex = 0;
 
-  final List<Widget> screens = const [
-    HomeScreen(),
-    WishListScreen(),
-    CartScreen(),
-    ProfileScreen(),
+  final List<Widget> screens = [
+    BlocProvider(
+      create: (context) => HomeCubit()..getBestSellerBooks(),
+      child: const HomeScreen(),
+    ),
+    const WishListScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
   ];
 
   final List<IconData> icons = const [

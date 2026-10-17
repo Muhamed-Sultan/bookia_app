@@ -3,6 +3,7 @@ import 'package:bookia_app/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/create_new_password_screen.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/forget_password_screen.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/register_screen.dart';
+import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/auth/presentation/ui/login_screen.dart';
@@ -38,9 +39,7 @@ class AppRouter {
           builder: (_) => const CreateNewPasswordScreen(),
         );
       case AppRoutes.AppBottonNavBar:
-        return MaterialPageRoute(
-          builder: (_) => const AppBottomNavBar(),
-        );
+        return MaterialPageRoute(builder: (_) => const AppBottomNavBar());
 
       default:
         return null;
