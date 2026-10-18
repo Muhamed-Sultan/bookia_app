@@ -1,6 +1,7 @@
+
 # 📚 Bookia App
 
-A Flutter application focused on providing a book-related mobile experience, with an authentication flow and reusable UI components.
+A Flutter application focused on providing a book-related mobile experience, with authentication screens, book browsing, and reusable UI components.
 
 ## ✨ Features
 
@@ -10,9 +11,10 @@ A Flutter application focused on providing a book-related mobile experience, wit
 - **Password Visibility** — Toggle password visibility in password fields.
 - **Authentication State Management** — Handle authentication states using Cubit and Bloc.
 - **API Communication** — Send HTTP requests using Dio.
+- **Best Sellers** — Fetch and display best-selling books from the API.
 - **Named Navigation** — Navigate between screens using named routes.
 - **Responsive UI** — Use Flutter ScreenUtil for screen-aware sizing.
-- **Reusable Widgets** — Custom text fields and buttons.
+- **Reusable Widgets** — Custom text fields, buttons, and book items.
 
 ## 🛠️ Technologies
 
@@ -31,11 +33,20 @@ lib/
 │   ├── theme/
 │   ├── utils/
 │   │   └── validator/
+│   ├── networking/
 │   └── widgets/
 └── feature/
-    └── auth/
+    ├── auth/
+    │   └── presentation/
+    │       └── cubit/
+    └── home/
+        ├── data/
+        │   ├── models/
+        │   └── repo/
         └── presentation/
-            └── cubit/
+            ├── cubit/
+            ├── screens/
+            └── widgets/
 ```
 
 ## 🚀 Getting Started
@@ -66,7 +77,7 @@ lib/
    flutter pub get
    ```
 
-4. Configure the API endpoints in the authentication repository.
+4. Configure the API endpoints in the networking configuration if needed.
 
 5. Run the application:
 
@@ -74,17 +85,15 @@ lib/
    flutter run
    ```
 
-## 🔌 API Configuration
+## 🔌 API Integration
 
-The authentication repository uses Dio to send login and registration requests.
+The application uses Dio for API communication and Cubit for managing loading, success, and error states when fetching best-selling books.
 
-Replace the placeholder API paths with your actual backend endpoints before testing authentication.
+Authentication endpoints should be configured according to the backend API used by the project.
 
 ---
 
 ## 📱 App Screenshots
-
-The following screenshots showcase the main authentication screens of Bookia App.
 
 ### 🏠 Welcome Screen
 
@@ -114,6 +123,12 @@ The following screenshots showcase the main authentication screens of Bookia App
 
 <p align="center">
   <img src="images/new-password.png" width="280" alt="Bookia New Password Screen"/>
+</p>
+
+### 📚 Home & Best Sellers
+
+<p align="center">
+  <img src="images/home.png" width="280" alt="Bookia Home Screen"/>
 </p>
 
 ---
