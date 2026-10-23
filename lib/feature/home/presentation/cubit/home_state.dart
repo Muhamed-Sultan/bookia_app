@@ -14,3 +14,13 @@ final class GetBestsellerBooksSuccess extends HomeState {
 
   GetBestsellerBooksSuccess(this.product);
 }
+
+final class SearchError extends HomeState {}
+
+final class SearchLoading extends HomeState {}
+
+final class SearchSuccess extends HomeState {
+  final List<Products> product;
+
+  SearchSuccess(this.product);
+}

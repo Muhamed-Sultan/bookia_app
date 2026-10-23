@@ -4,6 +4,7 @@ import 'package:bookia_app/feature/auth/presentation/ui/create_new_password_scre
 import 'package:bookia_app/feature/auth/presentation/ui/forget_password_screen.dart';
 import 'package:bookia_app/feature/auth/presentation/ui/register_screen.dart';
 import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
+import 'package:bookia_app/feature/home/presentation/ui/search_screen.dart';
 import 'package:bookia_app/feature/welcome/presentation/ui/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/auth/presentation/ui/login_screen.dart';
@@ -40,6 +41,13 @@ class AppRouter {
         );
       case AppRoutes.AppBottonNavBar:
         return MaterialPageRoute(builder: (_) => const AppBottomNavBar());
+      case AppRoutes.SearchScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => HomeCubit()..search(""),
+            child: const SearchScreen(),
+          ),
+        );
 
       default:
         return null;

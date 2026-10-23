@@ -1,6 +1,9 @@
+import 'package:bookia_app/core/theme/app_text_style.dart';
 import 'package:bookia_app/feature/home/data/models/book_model.dart';
 import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/home/presentation/ui/widgets/book_items.dart';
+import 'package:bookia_app/feature/home/presentation/ui/widgets/home_app_bar.dart';
+import 'package:bookia_app/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,22 +19,28 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 22.0.w),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              HomeAppBar(),
+              25.verticalSpace,
+              Text('Best Saller', style: AppTextStyle.mainText),
+              25.verticalSpace,
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is GetBestsellerBooksLoading) {
                     return Expanded(
                       child: Skeletonizer(
                         enabled: true,
-                        
+
                         child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: .49,
-                            mainAxisSpacing: 14.h,
-                            crossAxisSpacing: 18.w,
-                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: .49,
+                                mainAxisSpacing: 14.h,
+                                crossAxisSpacing: 18.w,
+                              ),
                           itemBuilder: (context, index) => BookItems(
                             product: Products(
                               name: "name test",

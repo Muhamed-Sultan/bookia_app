@@ -1,3 +1,4 @@
+import 'package:bookia_app/core/networking/api_endpoint.dart';
 import 'package:bookia_app/core/networking/dio_factory.dart';
 import 'package:bookia_app/core/services/locale/shared_local.dart';
 import 'package:bookia_app/core/utils/validator/app_constants.dart';
@@ -12,7 +13,7 @@ class AuthRepo {
   }) async {
     try {
       final response = await DioFactory.dio?.post(
-        'login',
+        ApiEndpoint.login,
         data: {"email": email, "password": password},
       );
       if (response?.statusCode == 200) {
@@ -39,7 +40,7 @@ class AuthRepo {
   }) async {
     try {
       final response = await DioFactory.dio?.post(
-        'register',
+        ApiEndpoint.register,
         data: {
           'name': name,
           'email': email,
