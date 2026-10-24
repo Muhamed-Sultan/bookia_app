@@ -3,7 +3,6 @@ import 'package:bookia_app/feature/home/data/models/book_model.dart';
 import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/home/presentation/ui/widgets/book_items.dart';
 import 'package:bookia_app/feature/home/presentation/ui/widgets/home_app_bar.dart';
-import 'package:bookia_app/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,7 +52,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                    ;
                   } else if (state is GetBestsellerBooksSuccess) {
                     return Expanded(
                       child: GridView.builder(
