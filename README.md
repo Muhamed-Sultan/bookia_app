@@ -2,15 +2,17 @@ from pathlib import Path
 
 readme = """# 📚 Bookia App
 
-Bookia is a Flutter mobile application for browsing books and exploring a book-focused shopping experience. The project uses reusable UI components and a feature-based structure to keep the code organized and maintainable.
+A Flutter application focused on providing a book-related mobile experience, with authentication screens, book browsing, and reusable UI components.
 
 ## ✨ Features
 
-- **Authentication UI** — Login and registration screens with form validation.
+- **User Login** — Email and password fields with input validation.
+- **User Registration** — Username, email, password, and password confirmation.
+- **Form Validation** — Validate user input before submitting authentication requests.
 - **Password Visibility** — Toggle password visibility in password fields.
-- **Book Browsing** — Home screen with a best-sellers section powered by API data.
-- **API Integration** — HTTP requests handled with Dio.
-- **State Management** — Cubit/Bloc for managing asynchronous UI states.
+- **Authentication State Management** — Handle authentication states using Cubit and Bloc.
+- **API Communication** — Send HTTP requests using Dio.
+- **Best Sellers** — Fetch and display best-selling books from the API.
 - **Profile Screen** — Profile page with navigation options for:
   - My Orders
   - Edit Profile
@@ -18,31 +20,31 @@ Bookia is a Flutter mobile application for browsing books and exploring a book-f
   - FAQ
   - Contact Us
   - Privacy & Terms
-- **Logout Entry Point** — Logout icon displayed in the profile header.
-- **Named Navigation** — Navigate between app screens using named routes.
-- **Responsive Layout** — Flutter ScreenUtil for screen-aware sizing.
-- **Reusable Widgets** — Shared UI components such as text fields, buttons, book items, and profile cards.
+- **Logout Entry Point** — Logout icon in the profile header.
+- **Named Navigation** — Navigate between screens using named routes.
+- **Responsive UI** — Use Flutter ScreenUtil for screen-aware sizing.
+- **Reusable Widgets** — Custom text fields, buttons, book items, and profile cards.
+- **Localization Support** — Easy Localization package is included in the project dependencies.
 
-## 🛠️ Tech Stack
+## 🛠️ Technologies
 
-- [Flutter](https://flutter.dev/)
+- Flutter
 - Dart
-- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-- [Dio](https://pub.dev/packages/dio)
-- [flutter_screenutil](https://pub.dev/packages/flutter_screenutil)
-- [easy_localization](https://pub.dev/packages/easy_localization)
+- flutter_bloc
+- Dio
+- flutter_screenutil
+- easy_localization
 
 ## 📂 Project Structure
-
-The project follows a feature-oriented structure. The exact files may evolve as the app develops.
 
 ```text
 lib/
 ├── core/
-│   ├── networking/
 │   ├── routes/
 │   ├── theme/
 │   ├── utils/
+│   │   └── validator/
+│   ├── networking/
 │   └── widgets/
 └── feature/
     ├── auth/
@@ -62,8 +64,6 @@ lib/
             └── widgets/
 ```
 
-> Folder names can differ depending on the current local project structure.
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -80,7 +80,7 @@ lib/
    git clone https://github.com/Muhamed-Sultan/bookia_app.git
    ```
 
-2. Open the project directory:
+2. Navigate to the project directory:
 
    ```bash
    cd bookia_app
@@ -92,7 +92,7 @@ lib/
    flutter pub get
    ```
 
-4. Configure the API base URL and endpoints to match your backend setup.
+4. Configure the API endpoints in the networking configuration if needed.
 
 5. Run the application:
 
@@ -100,25 +100,64 @@ lib/
    flutter run
    ```
 
-## 🔌 API & State Management
+## 🔌 API Integration
 
-Book data is requested through Dio, while Cubit/Bloc manages the related UI states. Configure the API endpoints in the project's networking layer before running the app against your backend.
+The application uses Dio for API communication and Cubit/Bloc for managing loading, success, and error states when fetching best-selling books.
 
-## 📱 Screenshots
+Authentication endpoints should be configured according to the backend API used by the project.
 
-Add current screenshots from your app to a folder such as `screenshots/`, then update the paths below.
+---
 
-| Screen | Preview |
-| --- | --- |
-| Welcome | `screenshots/welcome.png` |
-| Login | `screenshots/login.png` |
-| Register | `screenshots/register.png` |
-| Home / Best Sellers | `screenshots/home.png` |
-| Profile | `screenshots/profile.png` |
+## 📱 App Screenshots
+
+### 🏠 Welcome Screen
+
+<p align="center">
+  <img src="images/welcome.png" width="280" alt="Bookia Welcome Screen"/>
+</p>
+
+### 🔐 Login Screen
+
+<p align="center">
+  <img src="images/login.png" width="280" alt="Bookia Login Screen"/>
+</p>
+
+### 📝 Register Screen
+
+<p align="center">
+  <img src="images/register.png" width="280" alt="Bookia Registration Screen"/>
+</p>
+
+### 🔑 Forgot Password Screen
+
+<p align="center">
+  <img src="images/forget-password.png" width="280" alt="Bookia Forgot Password Screen"/>
+</p>
+
+### 🔒 New Password Screen
+
+<p align="center">
+  <img src="images/new-password.png" width="280" alt="Bookia New Password Screen"/>
+</p>
+
+### 📚 Home & Best Sellers
+
+<p align="center">
+  <img src="images/home.png" width="280" alt="Bookia Home Screen"/>
+</p>
+
+### 👤 Profile Screen
+
+<p align="center">
+  <img src="images/profile.png" width="280" alt="Bookia Profile Screen"/>
+</p>
+
+---
 
 ## 👨‍💻 Developer
 
-**Muhamed Salah Sultan**  
+**Muhamed Salah Sultan**
+
 Flutter Developer
 
 - GitHub: [Muhamed-Sultan](https://github.com/Muhamed-Sultan)
@@ -131,4 +170,4 @@ Flutter Developer
 
 path = Path("/mnt/data/README.md")
 path.write_text(readme, encoding="utf-8")
-print(f"Created: {path}")
+print("Updated README.md with the new Profile feature while preserving the existing sections and screenshot layout.")
