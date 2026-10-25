@@ -8,13 +8,14 @@ part 'book_details_state.dart';
 class BookDetailsCubit extends Cubit<BookDetailsState> {
   BookDetailsCubit() : super(BookDetailsInitial());
 
-  getDetails(int id) async {
+  Future<BookDetailsModel?> getDetails(int id) async {
     emit(BookDetailsLoading());
-    final response = await BookDetailsRepo.getBookDetails(id);
+      final response = await BookDetailsRepo.getBookDetails(id);
     if (response is BookDetailsModel) {
-      emit(BookDetailsSuccess(response.data));
-    } else {
+        emit(BookDetailsSuccess(response.data));
+      } else {
       emit(BookDetailsError());
     }
+    return null;
   }
 }

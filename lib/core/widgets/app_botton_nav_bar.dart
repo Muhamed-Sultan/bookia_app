@@ -5,9 +5,11 @@ import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/home/presentation/ui/home_screen.dart';
 import 'package:bookia_app/feature/profile/presentation/ui/profile_screen.dart';
 import 'package:bookia_app/feature/wish_list/presentation/ui/wish_list_screen.dart';
+import 'package:bookia_app/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBottomNavBar extends StatefulWidget {
   const AppBottomNavBar({super.key});
@@ -29,27 +31,37 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
     const ProfileScreen(),
   ];
 
-  final List<IconData> icons = const [
-    Icons.home,
-    Icons.payment_outlined,
-    Icons.shopping_cart,
-    Icons.person,
+  final List<String> icons = [
+    Assets.icons.home,
+    Assets.icons.bookmark,
+    Assets.icons.category,
+    Assets.icons.profile,
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(child: screens[currentIndex]),
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        backgroundColor: AppColors.backgroundColor,
-        iconSize: 27.r,
-        icons: icons,
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        itemCount: icons.length,
+        tabBuilder: (index, isActive) {
+          return Center(
+            child: SvgPicture.asset(
+              icons[index],
+              width: 27.r,
+              height: 27.r,
+              colorFilter: ColorFilter.mode(
+                isActive ? Colors.amber : Colors.grey,
+                BlendMode.srcIn,
+              ),
+            ),
+          );
+        },
         activeIndex: currentIndex,
         gapLocation: GapLocation.none,
+        backgroundColor: AppColors.backgroundColor,
         leftCornerRadius: 15.r,
         rightCornerRadius: 15.r,
-        activeColor: Colors.amber,
-        inactiveColor: Colors.grey,
         height: 56.h,
         onTap: (index) {
           setState(() {

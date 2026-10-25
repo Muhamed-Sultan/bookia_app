@@ -1,5 +1,5 @@
+import 'package:bookia_app/core/widgets/icon_back.dart';
 import 'package:bookia_app/feature/book_details/presentation/cubit/book_details_cubit.dart';
-import 'package:bookia_app/feature/home/presentation/ui/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +20,7 @@ class BookDetailsScreen extends StatelessWidget {
               } else if (state is BookDetailsSuccess) {
                 return Column(
                   children: [
-                    HomeAppBar(),
+                    IconBack(),
                     20.verticalSpace,
                     Image.network(state.data?.image ?? ""),
                     20.verticalSpace,

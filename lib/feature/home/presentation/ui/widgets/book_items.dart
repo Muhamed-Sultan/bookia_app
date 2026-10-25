@@ -10,10 +10,15 @@ class BookItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Image URL: ${product?.image}');
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.BookDetailsScreen,arguments: product?.id);
+        if (product?.id != null) {
+          Navigator.pushNamed(
+            context,
+            AppRoutes.BookDetailsScreen,
+            arguments: product!.id,
+          );
+        }
       },
       child: Container(
         padding: EdgeInsets.all(22.r),
