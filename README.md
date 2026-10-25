@@ -2,7 +2,7 @@ from pathlib import Path
 
 readme = """# 📚 Bookia App
 
-A Flutter application focused on providing a book-related mobile experience, with authentication screens, book browsing, and reusable UI components.
+A Flutter application focused on providing a book-related mobile experience, with authentication screens, book browsing, search, book details, and reusable UI components.
 
 ## ✨ Features
 
@@ -13,13 +13,9 @@ A Flutter application focused on providing a book-related mobile experience, wit
 - **Authentication State Management** — Handle authentication states using Cubit and Bloc.
 - **API Communication** — Send HTTP requests using Dio.
 - **Best Sellers** — Fetch and display best-selling books from the API.
-- **Profile Screen** — Profile page with navigation options for:
-  - My Orders
-  - Edit Profile
-  - Reset Password
-  - FAQ
-  - Contact Us
-  - Privacy & Terms
+- **Search Screen** — Search interface for finding books.
+- **Book Details Screen** — A dedicated screen for viewing book details.
+- **Profile Screen** — Profile page with navigation options for My Orders, Edit Profile, Reset Password, FAQ, Contact Us, and Privacy & Terms.
 - **Logout Entry Point** — Logout icon in the profile header.
 - **Named Navigation** — Navigate between screens using named routes.
 - **Responsive UI** — Use Flutter ScreenUtil for screen-aware sizing.
@@ -58,11 +54,21 @@ lib/
     │       ├── cubit/
     │       ├── screens/
     │       └── widgets/
+    ├── search/
+    │   └── presentation/
+    │       ├── screens/
+    │       └── widgets/
+    ├── details/
+    │   └── presentation/
+    │       ├── screens/
+    │       └── widgets/
     └── profile/
         └── presentation/
             ├── screens/
             └── widgets/
 ```
+
+> This is a high-level example of the project structure. Adjust folder names if they differ from the current repository.
 
 ## 🚀 Getting Started
 
@@ -102,13 +108,15 @@ lib/
 
 ## 🔌 API Integration
 
-The application uses Dio for API communication and Cubit/Bloc for managing loading, success, and error states when fetching best-selling books.
+The application uses Dio for API communication and Cubit/Bloc for managing asynchronous UI states, including loading, success, and error states.
 
-Authentication endpoints should be configured according to the backend API used by the project.
+Configure API endpoints according to the backend used by the project.
 
 ---
 
 ## 📱 App Screenshots
+
+> Place the corresponding screenshots in the `images/` folder in the repository. The filenames below must match the actual image filenames.
 
 ### 🏠 Welcome Screen
 
@@ -146,6 +154,18 @@ Authentication endpoints should be configured according to the backend API used 
   <img src="images/home.png" width="280" alt="Bookia Home Screen"/>
 </p>
 
+### 🔎 Search Screen
+
+<p align="center">
+  <img src="images/search.png" width="280" alt="Bookia Search Screen"/>
+</p>
+
+### 📖 Book Details Screen
+
+<p align="center">
+  <img src="images/details.png" width="280" alt="Bookia Book Details Screen"/>
+</p>
+
 ### 👤 Profile Screen
 
 <p align="center">
@@ -170,4 +190,4 @@ Flutter Developer
 
 path = Path("/mnt/data/README.md")
 path.write_text(readme, encoding="utf-8")
-print("Updated README.md with the new Profile feature while preserving the existing sections and screenshot layout.")
+print("Created full README.md with Search, Details, and Profile sections.")
