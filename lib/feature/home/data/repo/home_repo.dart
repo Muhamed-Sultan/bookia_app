@@ -1,11 +1,10 @@
 import 'package:bookia_app/core/networking/api_endpoint.dart';
 import 'package:bookia_app/core/networking/dio_factory.dart';
+import 'package:bookia_app/core/networking/error_handling.dart';
 import 'package:bookia_app/feature/home/data/models/book_model.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepo {
-  static Dio dio = Dio();
-
   static Future<BookModel?> getBestSellerBooks() async {
     try {
       final response = await DioFactory.dio?.get(ApiEndpoint.bestSellerBooks);
@@ -15,9 +14,10 @@ class HomeRepo {
       } else {
         return null;
       }
-    } catch (e) {
-      return null;
+    } on DioException catch (e) {
+      ErrorHandler.handle(e);
     }
+    return null;
   }
 
   static Future<List<Products?>?> search(String text) async {

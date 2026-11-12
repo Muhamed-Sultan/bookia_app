@@ -1,5 +1,6 @@
 import 'package:bookia_app/core/networking/api_endpoint.dart';
 import 'package:bookia_app/core/networking/dio_factory.dart';
+import 'package:bookia_app/core/networking/error_handling.dart';
 import 'package:bookia_app/core/services/locale/shared_local.dart';
 import 'package:bookia_app/core/utils/validator/app_constants.dart';
 import 'package:dio/dio.dart';
@@ -23,13 +24,13 @@ class AuthRepo {
       } else {
         return false;
       }
-    } catch (e) {
-      print(e);
+    } on DioException catch (e) {
+      ErrorHandler.handle(e);
       return false;
     }
   }
 
-  static saveToken(String token) async {
+  static Future<void> saveToken(String token) async {
     await SharedLocal.prefs?.setString(AppConstants.Token, token);
   }
 
@@ -50,7 +51,7 @@ class AuthRepo {
       );
 
       return response?.statusCode == 200 || response?.statusCode == 201;
-    } on DioException catch (e) {
+    } on DioException {
       return false;
     }
   }

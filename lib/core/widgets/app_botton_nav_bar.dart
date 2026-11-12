@@ -3,6 +3,7 @@ import 'package:bookia_app/core/theme/app_colors.dart';
 import 'package:bookia_app/feature/cart/presentation/ui/cart_screen.dart';
 import 'package:bookia_app/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia_app/feature/home/presentation/ui/home_screen.dart';
+import 'package:bookia_app/feature/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bookia_app/feature/profile/presentation/ui/profile_screen.dart';
 import 'package:bookia_app/feature/wish_list/presentation/ui/wish_list_screen.dart';
 import 'package:bookia_app/gen/assets.gen.dart';
@@ -28,7 +29,10 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
     ),
     const WishListScreen(),
     const CartScreen(),
-    const ProfileScreen(),
+    BlocProvider(
+      create: (context) => ProfileCubit()..getProfileData(),
+      child: const ProfileScreen(),
+    ),
   ];
 
   final List<String> icons = [

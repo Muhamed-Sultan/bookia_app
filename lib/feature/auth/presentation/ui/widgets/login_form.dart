@@ -1,3 +1,4 @@
+import 'package:bookia_app/core/networking/dio_factory.dart';
 import 'package:bookia_app/core/routes/app_routes.dart';
 import 'package:bookia_app/core/theme/app_colors.dart';
 import 'package:bookia_app/core/theme/app_text_style.dart';
@@ -41,6 +42,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
           );
         } else if (state is LoginSuccessState) {
+          DioFactory.init();
           Navigator.pushNamed(context, AppRoutes.AppBottonNavBar);
         } else {
           Navigator.pop(context);

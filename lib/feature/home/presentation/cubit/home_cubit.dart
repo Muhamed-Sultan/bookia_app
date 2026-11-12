@@ -8,7 +8,7 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
-  getBestSellerBooks() async {
+  Future<void> getBestSellerBooks() async {
     emit(GetBestsellerBooksLoading());
     final response = await HomeRepo.getBestSellerBooks();
 
@@ -19,7 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  search(String text) async {
+  Future<void> search(String text) async {
     emit(SearchLoading());
     final data = await HomeRepo.search(text);
     if (data is List<Products>) {

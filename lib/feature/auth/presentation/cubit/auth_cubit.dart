@@ -17,6 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LoginErrorState());
     }
   }
+  
 
   Future<void> register({
     required String email,
@@ -33,7 +34,9 @@ class AuthCubit extends Cubit<AuthState> {
     if (response) {
       emit(RegisterSuccessState());
     } else {
-      emit(RegisterErrorState());
+      emit(RegisterErrorState(
+
+      ));
     }
   }
 }
