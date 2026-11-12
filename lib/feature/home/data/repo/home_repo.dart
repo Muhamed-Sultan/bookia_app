@@ -15,7 +15,7 @@ class HomeRepo {
         return null;
       }
     } on DioException catch (e) {
-      ErrorHandler.handle(e);
+      ErrorHandler.handleDioException(e);
     }
     return null;
   }

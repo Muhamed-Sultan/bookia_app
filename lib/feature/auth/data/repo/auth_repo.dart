@@ -25,7 +25,7 @@ class AuthRepo {
         return false;
       }
     } on DioException catch (e) {
-      ErrorHandler.handle(e);
+      ErrorHandler.handleDioException(e);
       return false;
     }
   }

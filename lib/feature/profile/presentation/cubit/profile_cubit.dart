@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:bookia_app/core/networking/error_handling.dart';
 import 'package:bookia_app/feature/profile/data/models/profile_model.dart';
 import 'package:bookia_app/feature/profile/data/repo/profile_repo.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 part 'profile_state.dart';
@@ -10,11 +12,16 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> getProfileData() async {
     emit(GetProfileLoading());
-    final response = await ProfileRepo.getProfileData();
-    if (response is ProfileResponse) {
-      emit(GetProfileSuccess(response));
-    } else {
-      emit(GetProfileError());
+    try {
+      final response = await ProfileRepo.getProfileData();
+      if (response is ProfileResponse) {
+        emit(GetProfileSuccess(response));
+      } else {
+        emit(GetProfileError(error: 'get profile failed'));
+      }
+    } on DioException catch (e) {
+      final error = ErrorHandler.handleDioException(e);
+      emit(GetProfileError(error: error));
     }
   }
 }
