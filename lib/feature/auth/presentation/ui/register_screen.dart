@@ -13,18 +13,20 @@ class RegisterScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 22.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconBack(),
-              29.verticalSpace,
-              Text(
-                'Hello! Register to get started',
-                style: AppTextStyle.mainText,
-              ),
-              32.verticalSpace,
-              RegisterForm(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconBack(),
+                29.verticalSpace,
+                Text(
+                  'Hello! Register to get started',
+                  style: AppTextStyle.mainText,
+                ),
+                32.verticalSpace,
+                RegisterForm(),
+              ],
+            ),
           ),
         ),
       ),

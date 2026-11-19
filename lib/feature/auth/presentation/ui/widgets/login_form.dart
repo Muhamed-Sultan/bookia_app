@@ -6,6 +6,7 @@ import 'package:bookia_app/core/utils/validator/validation.dart';
 import 'package:bookia_app/core/widgets/app_botton.dart';
 import 'package:bookia_app/core/widgets/custom_text_form_feild.dart';
 import 'package:bookia_app/feature/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookia_app/feature/auth/presentation/ui/widgets/social_login_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +22,7 @@ class _LoginFormState extends State<LoginForm> {
   final formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
   @override
   void dispose() {
     emailController.dispose();
@@ -32,28 +34,49 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is LoginLoadingState) {
+        if (state is LoginLoadingState || state is GoogleAuthLoadingState) {
           showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (BuildContext context) => AlertDialog(
+            builder: (BuildContext context) => const AlertDialog(
               backgroundColor: Colors.transparent,
               content: Center(child: CircularProgressIndicator()),
             ),
           );
-        } else if (state is LoginSuccessState) {
+        } else if (state is LoginSuccessState || state is GoogleAuthSuccessState) {
+          Navigator.pop(context);
           DioFactory.init();
-          Navigator.pushNamed(context, AppRoutes.AppBottonNavBar);
-        } else {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.AppBottonNavBar,
+            (e) => false,
+          );
+        } else if (state is LoginErrorState) {
           Navigator.pop(context);
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Login failed'),
+              title: const Text('Login failed'),
+              content: Text(state.error),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text('OK'),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else if (state is GoogleAuthErrorState) {
+          Navigator.pop(context);
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Google Sign-in failed'),
+              content: Text(state.error),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
                 ),
               ],
             ),
@@ -82,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
               controller: passwordController,
               isPassword: true,
               validator: (v) {
-                if (v == null) {
+                if (v == null || v.trim().isEmpty) {
                   return 'Password is required';
                 }
                 if (!Validation.isPasswordValid(v)) {
@@ -99,10 +122,10 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.ForgetPasswordScreen);
                 },
-                child: Text('Forget Password?', style: AppTextStyle.hintText),
+                child: const Text('Forget Password?', style: AppTextStyle.hintText),
               ),
             ),
-            62.verticalSpace,
+            35.verticalSpace,
             AppBotton(
               title: 'Login',
               onTap: () {
@@ -114,12 +137,18 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
             ),
-            85.verticalSpace,
+            35.verticalSpace,
+            SocialLoginSection(
+              title: 'Or Login with',
+              onGoogleTap: () {
+                context.read<AuthCubit>().signInWithGoogle();
+              },
+            ),
+            40.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Don\'t have an account?'),
-
+                const Text('Don\'t have an account?'),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.RegisterScreen);

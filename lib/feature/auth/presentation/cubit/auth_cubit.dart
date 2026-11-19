@@ -2,7 +2,7 @@ import 'package:bookia_app/core/networking/error_handling.dart';
 import 'package:bookia_app/feature/auth/data/repo/auth_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 part 'auth_state.dart';
 
@@ -50,6 +50,24 @@ class AuthCubit extends Cubit<AuthState> {
     } on DioException catch (e) {
       final error = ErrorHandler.handleDioException(e);
       emit(RegisterErrorState(error: error));
+    } catch (e) {
+      emit(RegisterErrorState(error: 'Something went wrong'));
     }
   }
+
+  Future<void> signInWithGoogle() async {
+    emit(GoogleAuthLoadingState());
+    try {
+      final success = await AuthRepo.signInWithGoogle();
+      if (success) {
+        emit(GoogleAuthSuccessState());
+      } else {
+        emit(GoogleAuthErrorState(error: 'Google Sign-in failed or cancelled'));
+      }
+    } catch (e) {
+      emit(GoogleAuthErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> registerWithGoogle() => signInWithGoogle();
 }

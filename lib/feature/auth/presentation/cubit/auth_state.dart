@@ -23,3 +23,13 @@ final class RegisterErrorState extends AuthState {
 
   RegisterErrorState({required this.error});
 }
+
+final class GoogleAuthLoadingState extends AuthState {}
+
+final class GoogleAuthSuccessState extends AuthState {}
+
+final class GoogleAuthErrorState extends AuthState {
+  final String error;
+
+  GoogleAuthErrorState({required this.error});
+}
